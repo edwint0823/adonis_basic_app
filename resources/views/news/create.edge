@@ -1,0 +1,21 @@
+@layout('layouts/main')
+
+@section('content')
+    <h1>Create news</h1>
+    <form action="{{route('news.store')}}" method="POST" enctype="multipart/form-data">
+        {{ csrfField() }}
+        <input type="text" name="tittle" placeholder="Article Tittle">
+        @if(flashMessages.has('errors.tittle'))
+            <p> {{ flashMessages.get('errors.tittle') }} </p>
+        @end
+        <input type="file" name="image">
+        @if(flashMessages.has('errors.image'))
+            <p> {{ flashMessages.get('errors.image') }} </p>
+        @end
+        <textarea name="content" cols="30" rows="10" placeholder="Article Contet"></textarea>
+        @if(flashMessages.has('errors.content'))
+            <p> {{ flashMessages.get('errors.content') }} </p>
+        @end
+        <button type="submit">Create</button>
+    </form>
+@end
